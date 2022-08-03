@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145182733827",
+    "project_id": "newchatapp-ceb26",
+    "storage_bucket": "newchatapp-ceb26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145182733827:android:8cbb2954df1c4094368036",
+        "android_client_info": {
+          "package_name": "com.example.newchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145182733827-gc13hq125ik9jldpjt9agjqh3p32bfbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK8etHqntX_-IAj6gZ3Xp54MkOW900Gec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145182733827-gc13hq125ik9jldpjt9agjqh3p32bfbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
