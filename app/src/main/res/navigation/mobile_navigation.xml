@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_people">
+    app:startDestination="@id/navigation_login">
     <fragment
         android:id="@+id/navigation_people"
         android:name="com.example.newchatapp.ui.people.PeopleFragment"
@@ -14,5 +14,10 @@
         android:name="com.example.newchatapp.ui.myaccount.MyaccountFragment"
         android:label="My Account"
         tools:layout="@layout/fragment_myaccount" />
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.newchatapp.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>
