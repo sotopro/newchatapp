@@ -15,10 +15,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.newchatapp.databinding.FragmentLoginBinding
 import com.example.newchatapp.ui.login.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -86,6 +88,7 @@ class LoginFragment : Fragment() {
                     Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
+        getUser()
     }
 
     private fun signOut() {
@@ -93,6 +96,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun signUp(email: String, password: String) {
+        val user = hashMapOf(
+            "email" to email,
+            "password" to password
+        )
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -104,6 +111,30 @@ class LoginFragment : Fragment() {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(context, "Register failed.", Toast.LENGTH_SHORT).show()
                 }
+            }
+        saveUser(user)
+    }
+
+    private fun saveUser(user: HashMap<String, String>) {
+        db.collection("users").add(user)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(context, "User saved successfully ${documentReference.id}", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun getUser(){
+        db.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d("User", "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("User", "Error getting documents.", exception)
             }
     }
 }
